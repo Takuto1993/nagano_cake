@@ -1,0 +1,27 @@
+<h3>商品ジャンル一覧</h3>
+<% @genres.each do |genre| %>
+
+  <table class='table table-hover table-inverse'>
+    <thead>
+      <tr>
+        <th>ジャンル</th>
+        <th></th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @genres.name %></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+<% end %>
+
+<h4>商品ジャンル登録</h4>
+<%= form_with model: @genre, url: '/admin/genres' do |f| %>
+　<h5>ジャンル名</h5>
+　<%= f.text_field :name %>
+ <%= f.submit '登録' %>
+<% end %>
