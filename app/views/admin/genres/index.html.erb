@@ -11,7 +11,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><%= @genres.name %></td>
+        <td><%= link_to @genres.name, edit_admin_genre_path(genre.id) %></td>
         <td></td>
       </tr>
     </tbody>
