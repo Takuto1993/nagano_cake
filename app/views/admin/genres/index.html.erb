@@ -11,8 +11,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><%= link_to @genres.name, edit_admin_genre_path(genre.id) %></td>
-        <td></td>
+        <td><%= link_to genre.name, edit_admin_genre_path(genre.id) %></td>
+        <td><%= link_to "削除", admin_genre_path(genre.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
       </tr>
     </tbody>
   </table>
