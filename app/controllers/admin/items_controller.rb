@@ -12,12 +12,13 @@ class Admin::ItemsController < ApplicationController
   end
 
   def edit
+    @item = Item.find(params[:id])
   end
 
   def create
     @item = Item.new(item_params)
     @item.save
-    redirect_to item_params
+    redirect_to '/admin/items'
   end
 
   def update

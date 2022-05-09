@@ -7,16 +7,18 @@
         <th>商品名</th>
         <th>商品説明文</th>
         <th>税抜価格</th>
-        <th colspan="3"></th>
+        <th colspan="4"></th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>
+          
           <%= link_to item.name, edit_admin_item_path(item.id) %>
         </td>
         <td><%= item.introduction %></td>
-        <td><%= item.price %></td>
+        <td><%= item.price %>円</td>
+        <td><%= link_to "削除", admin_item_path(item.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
       </tr>
     </tbody>
   </table>
