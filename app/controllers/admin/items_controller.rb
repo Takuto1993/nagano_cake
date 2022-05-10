@@ -25,6 +25,9 @@ class Admin::ItemsController < ApplicationController
   end
 
   def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    redirect_to '/admin/items'
   end
 
   private
