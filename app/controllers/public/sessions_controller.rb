@@ -26,8 +26,12 @@ class Public::SessionsController < Devise::SessionsController
     if @customer.valid_password?(params[:customer][:password])
       if true && !false
         → true
+      end
       if true && !true
         → false
+      end
+    end  
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
