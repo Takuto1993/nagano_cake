@@ -23,14 +23,11 @@ class Public::SessionsController < Devise::SessionsController
   def customer_state
     @customer = Customer.find_by(email: params[:customer][:email])
     return if !@customer
-    if @customer.valid_password?(params[:customer][:password])
-      if true && !false
-        → true
+    if @customer
+      if @customer.valid_password?(params[:customer][:password]) && (@customer.is_active == false)
+         redirect_to customer_registration_path
       end
-      if true && !true
-        → false
-      end
-    end  
+    end
   end
 
   # If you have extra params to permit, append them to the sanitizer.

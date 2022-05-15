@@ -8,4 +8,5 @@
   <p>郵便番号:<%= @customer.postal_code %></p>
   <p>住所:<%= @customer.address %></p>
   <p>電話番号:<%= @customer.telephone_number %></p>
+  <%= link_to "登録情報変更", edit_public_customer_path(@customer.id) %>
 </div>
