@@ -1,6 +1,8 @@
 class Public::AddressController < ApplicationController
   def index
-    @addresses = @customer.address
+    if customer_signed_in?
+      @addresses = Address.where(customer_id: current_customer.id)
+    end
     @address = Address.new
   end
 
@@ -24,7 +26,7 @@ class Public::AddressController < ApplicationController
   def destroy
     @address = Address.find(params[:id])
     @address.destroy
-    redirect_to '/admin/address'
+    redirect_to '/public/address'
   end
   
   private

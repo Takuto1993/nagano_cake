@@ -17,7 +17,7 @@
             <%= address.postal_code %><br>
             <%= address.address %>
         </td>
-        <td></td>
+        <td><%= link_to "編集", edit_public_address_path(address.id) %></td>
       </tr>
     </tbody>
   </table>
