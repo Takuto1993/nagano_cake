@@ -1,6 +1,5 @@
 <h3>商品一覧画面</h3>
 <%= link_to "新規商品登録", 'items/new' %>
-<% @items.each do |item| %>
 
   <table class='table table-hover table-inverse'>
     <thead>
@@ -12,6 +11,7 @@
       </tr>
     </thead>
     <tbody>
+    <% @items.each do |item| %>
       <tr>
         <td>
           <% if item.image.attached? %>
@@ -24,7 +24,6 @@
         <td><%= item.introduction %></td>
         <td><%= item.price %>円</td>
       </tr>
+    <% end %>
     </tbody>
   </table>
-
-<% end %>

@@ -1,5 +1,4 @@
 <h3>顧客一覧</h3>
-<% @customers.each do |customer| %>
 
   <table class='table table-hover table-inverse'>
     <thead>
@@ -11,6 +10,7 @@
       </tr>
     </thead>
     <tbody>
+    <% @customers.each do |customer| %>
       <tr>
         <td>
           <%= link_to admin_customer_path(customer.id) do %>
@@ -26,7 +26,8 @@
           <%= "退会ステータス（搭載予定）" %>
         </td>
       </tr>
+    <% end %>
     </tbody>
   </table>
 
-<% end %>
+
