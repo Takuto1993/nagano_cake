@@ -19,6 +19,6 @@
     <%= f.submit "保存" %>
   </div>
 <% end %>
-<br>
+
 <%= link_to "削除", public_address_path(@address.id), method: :delete, "data-confirm" => "本当に削除しますか？" %><br>
 <%= link_to "配送先一覧", '/public/address' %>

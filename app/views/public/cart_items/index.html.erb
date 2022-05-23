@@ -22,11 +22,11 @@
           <% end %>
           <%= item.name %>
         </td>
-        <td><%= (cart_item.price * 1.1).floor %>円</td>
+        <td><%= cart_item.item.with_tax_price %>円</td>
         <td><%= cart_item.amount %></td>
-        <td><%= (cart_item.price * 1.1).floor*cart_item.amount %></td>
+        <td><%= cart_item.subtotal %>円</td>
         <td></td>
-        <%= @合計金額+= (cart_item.price * 1.1).floor * cart_item.amount 
+
       </tr>
     <% end %>
     </tbody>

@@ -4,14 +4,14 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
-    @cart_item = current_customer.cart_items.build(cart_item_params)
+    @cart_item = current_customer.cart_item.build(cart_item_params)
     @cart_item.save
-    binding.pry
+    redirect_to "/public/cart_items"
   end
 
   private
 
   def cart_item_params
-    params.require(:cart_item).permit(:item_id, :amount)
+    params.permit(:item_id, :amount)
   end
 end
