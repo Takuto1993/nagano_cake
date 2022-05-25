@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2022_05_18_070905) do
     t.string "last_name_kana"
     t.string "first_name_kana"
     t.string "postal_code"
-    t.string "address"
+    t.string "main_address"
     t.string "telephone_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

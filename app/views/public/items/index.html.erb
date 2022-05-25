@@ -18,7 +18,7 @@
           <% else %>
            <%= image_tag 'no_image', size: "200x200" %>
           <% end %>
-          <%= link_to item.name, public_item_path(item.id) %>
+          <%= link_to item.name, item_path(item.id) %>
         </td>
         <td><%= item.introduction %></td>
         <td><%= item.price %>円</td>
