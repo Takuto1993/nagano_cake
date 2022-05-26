@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/items' => 'public/items#index'
   get '/items/:id' => 'public/items#show'
   get '/customers/mypage' => 'public/customers#show'
-  get '/customers/edit' => 'public/customers/#edit'
+  get '/customers/edit' => 'public/customers#edit'
   get '/cart_items' => 'public/cart_items#index'
   get '/orders' => 'public/orders#index'
   get '/addresses' => 'public/addresses#index'

@@ -9,7 +9,7 @@
   <p>郵便番号:〒<%= @customer.postal_code %></p>
   <p>住所:<%= @customer.main_address %></p>
   <p>電話番号:<%= @customer.telephone_number %></p>
-  <%= link_to "登録情報変更", edit_public_customer_path(@customer.id) %>
+  <%= link_to "登録情報変更", '/customers/edit' %>
 </div>
 
 <%= link_to "配送先一覧", '/addresses' %>
