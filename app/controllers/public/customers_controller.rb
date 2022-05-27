@@ -12,6 +12,13 @@ class Public::CustomersController < ApplicationController
     @customer.update(customer_params)
     redirect_to '/customers/mypage'
   end
+  
+  def withdraw
+    @customer = current_customer
+    @customer.update(is_active: true)
+    reset_session
+    redirect_to root_path
+  end
 
   def customer_params
     params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :encrypted_password, :postal_code, :main_address, :telephone_number)
