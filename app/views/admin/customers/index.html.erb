@@ -5,8 +5,9 @@
       <tr>
         <th>顧客名</th>
         <th>顧客名（カナ）</th>
+        <th>退会ステータス</th>
         <th></th>
-        <th colspan="3"></th>
+        <th colspan="4"></th>
       </tr>
     </thead>
     <tbody>
@@ -21,7 +22,13 @@
           <%= customer.first_name_kana %>
         </td>
         <td>
-          <%= "退会ステータス（未搭載）" %>
+          <%= customer.is_active %>
+           <%= "退会" %>
+
+           <%= "在籍" %>
+
+        </td>
+        <td>
           <%= link_to admin_customer_path(customer.id) do %>
            <%= "顧客情報編集" %>
           <% end %>
