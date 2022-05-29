@@ -22,11 +22,7 @@
           <%= customer.first_name_kana %>
         </td>
         <td>
-          <%= customer.is_active %>
-           <%= "退会" %>
-
-           <%= "在籍" %>
-
+          <%= customer.is_active ? '退会' : '' %>
         </td>
         <td>
           <%= link_to admin_customer_path(customer.id) do %>
