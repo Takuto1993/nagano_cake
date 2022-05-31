@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get '/customers/unsubscribe' => 'public/customers#unsubscribe', as: 'unsubscribe'
   patch '/customers/withdraw' => 'public/customers#withdraw', as: 'withdrawal'
 
-  get '/cart_items' => 'public/cart_items#index'
+  get '/cart_items/:id' => 'public/cart_items#index'
 
   get '/orders' => 'public/orders#index'
 
