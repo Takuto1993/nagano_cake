@@ -1,5 +1,5 @@
 <h1>退会確認画面</h1>
 <%= "退会してしまうと現在のアカウントでログインすることができなくなってしまいます。" %><br>
 <%= "それでも退会しますか？" %><br>
-<%= link_to "退会する", withdrawal_path, method: :patch, "data-confirm" => "本当に退会しますか？" %>
+<%= button_to "退会する", withdrawal_path, method: :patch, "data-confirm" => "本当に退会しますか？" %><br>
 <%= link_to "退会しない", '/customers/mypage' %>

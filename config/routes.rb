@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   get '/customers/unsubscribe' => 'public/customers#unsubscribe', as: 'unsubscribe'
   patch '/customers/withdraw' => 'public/customers#withdraw', as: 'withdrawal'
 
-  get '/cart_items/:id' => 'public/cart_items#index'
+  get '/cart_items' => 'public/cart_items#index'
+  get '/cart_items/destroy_all' => 'public/cart_items#destroy_all'
 
   get '/orders' => 'public/orders#index'
 
@@ -19,13 +20,21 @@ Rails.application.routes.draw do
 
   resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   resources :items, only: [:index, :show]
-  resources :cart_items, only: [:index, :create, :update, :destroy, :destroy_all]
+  resources :cart_items, only: [:index, :create, :update, :destroy, :destroy_all] do
+    collection do
+      delete 'destroy_all'
+    end
+  end
 
   namespace :public do
     resources :customers, only: [:show, :edit, :update]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resources :items, only: [:index, :show]
-    resources :cart_items, only: [:index, :create, :update, :destroy, :destroy_all]
+    resources :cart_items, only: [:index, :create, :update, :destroy, :destroy_all] do
+      collection do
+        delete 'destroy_all'
+      end
+    end
   end
 
   namespace :admin do
