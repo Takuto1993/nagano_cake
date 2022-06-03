@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   patch '/customers/withdraw' => 'public/customers#withdraw', as: 'withdrawal'
 
   get '/cart_items' => 'public/cart_items#index'
-  get '/cart_items/destroy_all' => 'public/cart_items#destroy_all'
+  delete '/cart_items/destroy_all' => 'public/cart_items#destroy_all', as: 'destroy_all'
 
   get '/orders' => 'public/orders#index'
 

@@ -24,7 +24,13 @@
           <%= cart_item.item.name %>
         </td>
         <td><%= cart_item.item.with_tax_price %>円</td>
-        <td><%= cart_item.amount %></td>
+        <td>
+          <%= cart_item.amount %> 個
+          <%= form_with model: @cart_item, url: public_cart_item_path(current_customer.id), method: :patch do |f| %>
+          　<%= f.select :amount, *[1..10]  %>
+          　<%= f.submit "変更", class:"btn btn-sm  btn-success" %>
+          <% end %>
+        </td>
         <td><%= cart_item.subtotal %>円</td>
         <td><%= link_to "削除", public_cart_item_path(cart_item.id), method: :delete, "data-confirm" => "カートから削除しますか？" %></td>
         <% @sum += cart_item.subtotal %>
@@ -33,7 +39,11 @@
     <% end %>
     <tfoot>
       <tr>
-        <td><%= link_to "買い物を続ける", '/' %></td>
+        <td>
+          <%= link_to '/', class:"btn btn-sm btn-primary" do %>
+            <%= "買い物を続ける" %>
+          <% end %>
+        </td>
         <td></td>
         <td>合計金額</td>
         <td><%= @sum %>円</td>
