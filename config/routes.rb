@@ -25,8 +25,8 @@ Rails.application.routes.draw do
 
   get '/addresses' => 'public/addresses#index'
   get '/addresses/:id/edit' => 'public/addresses#edit'
-  
-  get '/orders/:id/new' => 'public/orders#new'
+
+  get '/orders/new' => 'public/orders#new'
 
   resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   resources :items, only: [:index, :show]

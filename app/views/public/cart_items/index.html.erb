@@ -40,14 +40,18 @@
     <tfoot>
       <tr>
         <td>
-          <%= link_to '/', class:"btn btn-sm btn-primary" do %>
+          <%= link_to '/', class:"btn btn-primary" do %>
             <%= "買い物を続ける" %>
           <% end %>
         </td>
         <td></td>
         <td>合計金額</td>
         <td><%= @sum %>円</td>
-        <td></td>
+        <td>
+          <%= link_to new_order_path, class:"btn btn-success" do %>
+           <%= "情報入力に進む" %>
+          <% end %>
+        </td>
       </tr>
     </tfoot>
   </table>
