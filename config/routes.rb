@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get '/addresses/:id/edit' => 'public/addresses#edit'
 
   get '/orders/new' => 'public/orders#new'
+  get '/orders/comfirm' => 'public/orders#comfirm'
 
   resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   resources :items, only: [:index, :show]
@@ -35,7 +36,7 @@ Rails.application.routes.draw do
       delete 'destroy_all'
     end
   end
-  resources :orders
+  resources :orders, only: [:index, :new, :comfirm, :complete, :create, :show]
 
   namespace :public do
     resources :customers, only: [:show, :edit, :update]
@@ -46,7 +47,7 @@ Rails.application.routes.draw do
         delete 'destroy_all'
       end
     end
-    resources :orders
+    resources :orders, only: [:index, :new, :comfirm, :complete, :create, :show]
   end
 
   namespace :admin do

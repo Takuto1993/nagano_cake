@@ -4,16 +4,23 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @cart_items = current_customer.cart_items
   end
 
   def show
   end
 
+  def comfirm
+    @order = Order.new
+    @cart_items = current_customer.cart_items
+    @order.postal_code = current_customer.postal_code
+    @order.address = current_customer.address
+    @order.name = current_customer.first_name + current_customer.last_name
+  end
+
   def create
     @order = Order.new(order_params)
     @order.save
-    redirect_to '/orders'
+    redirect_to '/orders/comfirm'
   end
 
   private

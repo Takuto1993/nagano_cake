@@ -1,0 +1,78 @@
+ <div class="container px-5 px-sm-0">
+  <div class="row">
+   <div class='col-md-8'>
+    <table class='table table-inverse'>
+      <thead>
+        <h4>注文情報確認画面</h4>
+        <tr>
+          <th>商品名</th>
+          <th>単価（税込）</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th colspan="4"></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @sum = 0 %>
+      <% @cart_items.each do |cart_item| %>
+        <tr>
+          <td>
+            <% if cart_item.item.image.attached? %>
+             <%= image_tag cart_item.item.image,size: "200x200" %>
+            <% else %>
+             <%= image_tag 'no_image', size: "200x200" %>
+            <% end %>
+            <%= cart_item.item.name %>
+          </td>
+          <td><%= cart_item.item.with_tax_price %>円</td>
+          <td><%= cart_item.amount %> 個</td>
+          <td><%= cart_item.subtotal %>円</td>
+          <% @sum += cart_item.subtotal %>
+        </tr>
+      <% end %>
+      </tbody>
+      <div class="col-md-3">
+        <table class='table table-inverse'>
+          <tboody>
+            <h4>　</h4>
+            <tr>
+              <td>支払方法</td>
+              <td></td>
+              <td colspan="2"></td>
+            </tr>
+            <tr>
+              <td>お届け先</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+   <div class="col-md-3">
+    <table class='table table-inverse'>
+      <tboody>
+        <h4>　</h4>
+          <tr>
+            <td>送料</td>
+            <td>800円</td>
+            <td colspan="2"></td>
+          </tr>
+          <tr>
+            <td>商品合計金額</td>
+            <td><%= @sum %>円</td>
+            <td colspan="2"></td>
+          </tr>
+          <tr>
+            <td>請求金額</td>
+            <td><%= 800 + @sum %>円</td>
+            <td colspan="2"></td>
+          </tr>
+      </tbody>
+    </table>
+    <%= link_to new_order_path, class:"btn btn-success" do %>
+     <%= "注文を確定する" %>
+    <% end %>
+   </div>
+  </div>
+ </div>
+ 
+ 

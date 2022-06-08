@@ -35,8 +35,8 @@
         <td><%= link_to "削除", public_cart_item_path(cart_item.id), method: :delete, "data-confirm" => "カートから削除しますか？" %></td>
         <% @sum += cart_item.subtotal %>
       </tr>
-    </tbody>
     <% end %>
+    </tbody>
     <tfoot>
       <tr>
         <td>
