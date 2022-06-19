@@ -1,9 +1,11 @@
+ <p id="notice"></p>
  <div class="container px-5 px-sm-0">
   <div class="row">
    <div class='col-md-8'>
     <table class='table table-inverse'>
       <thead>
         <h4>注文情報確認画面</h4>
+        <p id="notice"></p>
         <tr>
           <th>商品名</th>
           <th>単価（税込）</th>
@@ -18,9 +20,9 @@
         <tr>
           <td>
             <% if cart_item.item.image.attached? %>
-             <%= image_tag cart_item.item.image,size: "200x200" %>
+             <%= image_tag cart_item.item.image,size: "50x50" %>
             <% else %>
-             <%= image_tag 'no_image', size: "200x200" %>
+             <%= image_tag 'no_image', size: "50x50" %>
             <% end %>
             <%= cart_item.item.name %>
           </td>
@@ -34,15 +36,18 @@
       <div class="col-md-3">
         <table class='table table-inverse'>
           <tboody>
-            <h4>　</h4>
             <tr>
-              <td>支払方法</td>
-              <td></td>
+              <td><h5>支払方法</h5></td>
+              <td><%= @order.payment_method_i18n %></td>
               <td colspan="2"></td>
             </tr>
             <tr>
-              <td>お届け先</td>
-              <td></td>
+              <td><h5>お届け先</h5></td>
+              <td>
+                〒<%= @order.postal_code %><br>
+                <%= @order.address %><br>
+                <%= @order.name %>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -53,7 +58,7 @@
         <h4>　</h4>
           <tr>
             <td>送料</td>
-            <td>800円</td>
+            <td><%= @shipping_fee %>円</td>
             <td colspan="2"></td>
           </tr>
           <tr>
@@ -63,16 +68,21 @@
           </tr>
           <tr>
             <td>請求金額</td>
-            <td><%= 800 + @sum %>円</td>
+            <td><%= @shipping_fee + @sum %>円</td>
             <td colspan="2"></td>
           </tr>
       </tbody>
     </table>
-    <%= link_to new_order_path, class:"btn btn-success" do %>
-     <%= "注文を確定する" %>
+    <%= form_with model: @order do |f| %>
+     <%= f.hidden_field :postal_code %>
+     <%= f.hidden_field :address %>
+     <%= f.hidden_field :name %>
+     <%= f.hidden_field :payment_method %>
+     <%= f.hidden_field :total_price %>
+
+     <%= f.submit "注文を確定する", class:"btn btn-success" %>
     <% end %>
    </div>
   </div>
  </div>
- 
- 
+

@@ -10,26 +10,44 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <header>
-      <% if customer_signed_in? %>
-      <li>
-        <%= link_to "マイページ", '/customers/mypage' %>
-      </li>
-      <li>
-        <%= link_to "マイカート", '/cart_items' %>
-      </li>
-       <li>
-         <%= link_to "ログアウト",destroy_customer_session_path, method: :delete %>
-       </li>
-       <% else %>
-        <li>
-         <%= link_to "新規会員登録", new_customer_registration_path %>
-        </li>
-        <li>
-          <%= link_to "ログイン", new_customer_session_path %>
-        </li>
-      <% end %>
+  <body class="d-flex flex-column vh-100">
+    <header class ="shadow-sm">
+      <nav class="navbar navbar-expand-lg nacbar-dark bg-dart" >
+        <div class="container">
+          <a class="navbar-brand" href="/" >
+            <span>ながのCAKE</span>
+          </a>
+          <div class="navbar-collapse collapse show" id="navbarNavDropdown" style >
+            <ul class="navbar-nav ml-auto" >
+              <% if customer_signed_in? %>
+              <li>
+                <%= link_to "マイページ", '/customers/mypage' %>
+              </li>
+              <%= "　" %>
+              <li>
+                <%= link_to "商品一覧", '/items' %>
+              </li>
+              <%= "　" %>
+              <li>
+                <%= link_to "マイカート", '/cart_items' %>
+              </li>
+              <%= "　" %>
+               <li>
+                 <%= link_to "ログアウト",destroy_customer_session_path, method: :delete %>
+               </li>
+               <% else %>
+                <li>
+                 <%= link_to "新規会員登録", new_customer_registration_path %>
+                </li>
+                <%= "　" %>
+                <li>
+                  <%= link_to "ログイン", new_customer_session_path %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
     <%= yield %>
   </body>

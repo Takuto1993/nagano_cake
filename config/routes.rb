@@ -2,11 +2,6 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'orders/show'
   end
-  namespace :public do
-    get 'orders/new'
-    get 'orders/index'
-    get 'orders/show'
-  end
   root 'public/homes#top'
   get '/about' =>'public/homes#about'
 
@@ -27,7 +22,8 @@ Rails.application.routes.draw do
   get '/addresses/:id/edit' => 'public/addresses#edit'
 
   get '/orders/new' => 'public/orders#new'
-  get '/orders/comfirm' => 'public/orders#comfirm'
+  get '/orders/complete' => 'public/orders#complete'
+  post '/orders/confirm' => 'public/orders#confirm'
 
   resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   resources :items, only: [:index, :show]
@@ -36,7 +32,11 @@ Rails.application.routes.draw do
       delete 'destroy_all'
     end
   end
-  resources :orders, only: [:index, :new, :comfirm, :complete, :create, :show]
+  resources :orders, only: [:index, :new, :create, :show] do
+    collection do
+      post :confirm
+    end
+  end
 
   namespace :public do
     resources :customers, only: [:show, :edit, :update]
@@ -47,7 +47,11 @@ Rails.application.routes.draw do
         delete 'destroy_all'
       end
     end
-    resources :orders, only: [:index, :new, :comfirm, :complete, :create, :show]
+    resources :orders, only: [:index, :new, :create, :show] do
+      collection do
+        post :confirm
+      end
+    end
   end
 
   namespace :admin do

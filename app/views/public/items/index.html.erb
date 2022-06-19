@@ -14,9 +14,9 @@
       <tr>
         <td>
           <% if item.image.attached? %>
-           <%= image_tag item.image,size: "200x200" %>
+           <%= image_tag item.image,size: "150x150" %>
           <% else %>
-           <%= image_tag 'no_image', size: "200x200" %>
+           <%= image_tag 'no_image', size: "150x150" %>
           <% end %>
           <%= link_to item.name, item_path(item.id) %>
         </td>
