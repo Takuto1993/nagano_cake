@@ -4,8 +4,9 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = current_customer.orders
   end
-
+ 
   def show
   end
 
@@ -31,7 +32,7 @@ class Public::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.save
-    redirect_to 'orders/complete'
+    redirect_to '/orders/complete'
   end
 
   private
