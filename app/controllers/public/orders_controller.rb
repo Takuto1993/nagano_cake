@@ -4,10 +4,11 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = current_customer.orders
+    @orders = Order.all
   end
- 
+
   def show
+    @order_lists = OrderList.all
   end
 
   def confirm
@@ -30,9 +31,26 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
+    cart_items = current_customer.cart_items.all
     @order = Order.new(order_params)
-    @order.save
-    redirect_to '/orders/complete'
+    @order.customer_id = current_customer.id
+    @order.status = 0
+    if @order.save
+      cart_items.each do |cart_item|
+        order_list = OrderList.new
+        order_list.item_id = cart_item.item_id
+        order_list.order_id = @order.id
+        order_list.amount = cart_item.amount
+        order_list.price = cart_item.item.price
+        order_list.making_status = 0
+        order_list.save
+      end
+      current_customer.cart_items.destroy_all
+      redirect_to "/orders/complete"
+    else
+      @order = Order.new(order_params)
+      render :new
+    end
   end
 
   private

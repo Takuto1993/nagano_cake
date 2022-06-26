@@ -1,2 +1,10 @@
-<h1>Public::Orders#show</h1>
-<p>Find me in app/views/public/orders/show.html.erb</p>
+<p id="notice"></p>
+<h4>注文詳細画面</h4>
+    <% @order_lists.each do |order_list| %>
+      <tr>
+        <td><%= order_list.item_id %></td>
+        <td>
+        </td>
+        <td></td>
+      </tr>
+    <% end %>

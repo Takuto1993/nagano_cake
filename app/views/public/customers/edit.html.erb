@@ -1,5 +1,5 @@
 <h1>登録情報変更</h1>
-<%= form_with model: @customer, url: public_customer_path(current_customer.id), method: :patch do |f| %>
+<%= form_with model: @customer, url: customer_path(current_customer.id), method: :patch do |f| %>
   <div class="field">
     <%= f.label :"性" %><br />
     <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>

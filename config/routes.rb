@@ -5,42 +5,14 @@ Rails.application.routes.draw do
   root 'public/homes#top'
   get '/about' =>'public/homes#about'
 
-  get '/items' => 'public/items#index'
-  get '/items/:id' => 'public/items#show'
-
   get '/customers/mypage' => 'public/customers#show'
-  get '/customers/edit' => 'public/customers#edit'
   get '/customers/unsubscribe' => 'public/customers#unsubscribe', as: 'unsubscribe'
   patch '/customers/withdraw' => 'public/customers#withdraw', as: 'withdrawal'
 
-  get '/cart_items' => 'public/cart_items#index'
   delete '/cart_items/destroy_all' => 'public/cart_items#destroy_all', as: 'destroy_all'
 
-  get '/orders' => 'public/orders#index'
-
-  get '/addresses' => 'public/addresses#index'
-  get '/addresses/:id/edit' => 'public/addresses#edit'
-
-  get '/orders/new' => 'public/orders#new'
-  get '/orders/complete' => 'public/orders#complete'
-  post '/orders/confirm' => 'public/orders#confirm'
-
-  resources :addresses, only: [:index, :edit, :create, :update, :destroy]
-  resources :items, only: [:index, :show]
-  resources :cart_items, only: [:index, :create, :update, :destroy, :destroy_all] do
-    collection do
-      delete 'destroy_all'
-    end
-  end
-  resources :orders, only: [:index, :new, :create, :show] do
-    collection do
-      post :confirm
-      get :complete
-    end
-  end
-
-  namespace :public do
-    resources :customers, only: [:show, :edit, :update]
+  scope module: :public do
+    resource :customers, only: [:edit, :update]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resources :items, only: [:index, :show]
     resources :cart_items, only: [:index, :create, :update, :destroy, :destroy_all] do
@@ -51,7 +23,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :new, :create, :show] do
       collection do
         post :confirm
-        get :complete
+        post :complete
       end
     end
   end

@@ -21,7 +21,7 @@
           <%= link_to item.name, item_path(item.id) %>
         </td>
         <td><%= item.introduction %></td>
-        <td><%= item.price %>円</td>
+        <td><%= item.price.to_s(:delimited) %>円</td>
       </tr>
     <% end %>
     </tbody>

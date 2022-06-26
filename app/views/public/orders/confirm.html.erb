@@ -26,9 +26,9 @@
             <% end %>
             <%= cart_item.item.name %>
           </td>
-          <td><%= cart_item.item.with_tax_price %>円</td>
+          <td><%= cart_item.item.with_tax_price.to_s(:delimited) %>円</td>
           <td><%= cart_item.amount %> 個</td>
-          <td><%= cart_item.subtotal %>円</td>
+          <td><%= cart_item.subtotal.to_s(:delimited) %>円</td>
           <% @sum += cart_item.subtotal %>
         </tr>
       <% end %>
@@ -62,28 +62,29 @@
         <p id="notice"></p>
           <tr>
             <td>送料</td>
-            <td><%= @shipping_fee %>円</td>
+            <td><%= @shipping_fee.to_s(:delimited) %>円</td>
             <td colspan="2"></td>
           </tr>
           <tr>
             <td>商品合計金額</td>
-            <td><%= @sum %>円</td>
+            <td><%= @sum.to_s(:delimited) %>円</td>
             <td colspan="2"></td>
           </tr>
           <% @total_payment = @sum + @shipping_fee %>
           <tr>
             <td>請求金額</td>
-            <td><%= @total_payment %>円</td>
+            <td><%= @total_payment.to_s(:delimited) %>円</td>
             <td colspan="2"></td>
           </tr>
       </tbody>
     </table>
-    <%= form_with model: @order, url: '/public/orders', method: :post do |f| %>
+    <%= form_with model: @order, url: orders_path, method: :post do |f| %>
      <%= f.hidden_field :postal_code %>
      <%= f.hidden_field :address %>
      <%= f.hidden_field :name %>
      <%= f.hidden_field :payment_method %>
-     <%= f.hidden_field :total_payment %>
+     <%= f.hidden_field :shipping_fee, value: @shipping_fee %>
+     <%= f.hidden_field :total_payment, value: @total_payment %>
      <%= f.submit "注文を確定する", class:"btn btn-success" %>
     <% end %>
    </div>
