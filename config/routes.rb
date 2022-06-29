@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'orders/show'
-  end
   root 'public/homes#top'
   get '/about' =>'public/homes#about'
+  get '/admin' => 'admin/homes#top'
 
   get '/customers/mypage' => 'public/customers#show'
   get '/customers/unsubscribe' => 'public/customers#unsubscribe', as: 'unsubscribe'
@@ -32,6 +30,7 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :edit, :create, :update, :destroy]
     resources :items, only: [:index, :new, :show, :edit, :create, :update, :destroy]
     resources :customers, only: [:index, :show, :edit, :update]
+    resources :orders, only: [:show]
     get 'homes/top'
   end
   devise_for :admin, skip: [:registrations, :passwords], controllers: {

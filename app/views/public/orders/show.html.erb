@@ -4,7 +4,7 @@
    <div class='col-md-8'>
     <table class='table table-inverse'>
       <thead>
-        <h4>注文情報確認画面</h4>
+        <h4>注文情報詳細画面</h4>
         <p id="notice"></p>
         <tr>
           <th>商品名</th>
@@ -20,15 +20,15 @@
         <tr>
           <td>
             <% if order_list.item.image.attached? %>
-             <%= image_tag order_list.item.image,size: "50x50" %>
+             <%= image_tag order_list.item.image,size: "100x100" %>
             <% else %>
-             <%= image_tag 'no_image', size: "50x50" %>
+             <%= image_tag 'no_image', size: "100x100" %>
             <% end %>
             <%= order_list.item.name %>
           </td>
           <td><%= order_list.item.with_tax_price.to_s(:delimited) %>円</td>
           <td><%= order_list.amount %> 個</td>
-          <% @price = order_list.price * order_list.amount %>
+          <% @price = order_list.item.with_tax_price * order_list.amount %>
           <td><%= @price.to_s(:delimited) %>円</td>
           <% @sum += @price %>
         </tr>
@@ -74,6 +74,16 @@
           <tr>
             <td>請求金額</td>
             <td><%= @order.total_payment.to_s(:delimited) %>円</td>
+            <td colspan="2"></td>
+          </tr>
+          <tr>
+            <td>受注ステータス</td>
+            <td></td>
+            <td colspan="2"></td>
+          </tr>
+          <tr>
+            <td>制作ステータス</td>
+            <td></td>
             <td colspan="2"></td>
           </tr>
       </tbody>

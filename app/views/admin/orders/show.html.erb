@@ -1,2 +1,93 @@
-<h1>Admin::Orders#show</h1>
-<p>Find me in app/views/admin/orders/show.html.erb</p>
+<p id="notice"></p>
+ <div class="container px-5 px-sm-0">
+  <div class="row">
+   <div class='col-md-8'>
+    <table class='table table-inverse'>
+      <thead>
+        <h4>注文情報詳細画面</h4>
+        <p id="notice"></p>
+        <tr>
+          <th>商品名</th>
+          <th>単価（税込）</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th colspan="4"></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @sum = 0 %>
+      <% @order_lists.each do |order_list| %>
+        <tr>
+          <td>
+            <% if order_list.item.image.attached? %>
+             <%= image_tag order_list.item.image,size: "100x100" %>
+            <% else %>
+             <%= image_tag 'no_image', size: "100x100" %>
+            <% end %>
+            <%= order_list.item.name %>
+          </td>
+          <td><%= order_list.item.with_tax_price.to_s(:delimited) %>円</td>
+          <td><%= order_list.amount %> 個</td>
+          <% @price = order_list.item.with_tax_price * order_list.amount %>
+          <td><%= @price.to_s(:delimited) %>円</td>
+          <% @sum += @price %>
+        </tr>
+      <% end %>
+      </tbody>
+      <div class="col-md-3">
+        <table class='table table-inverse'>
+          <tboody>
+            <tr>
+              <td><h5>支払方法</h5></td>
+              <td><%= @order.payment_method_i18n %></td>
+              <td colspan="2"></td>
+            </tr>
+            <tr>
+              <td><h5>お届け先</h5></td>
+              <td>
+                〒<%= @order.postal_code %><br>
+                <%= @order.address %><br>
+                <%= @order.name %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <%= link_to '/admin', class: "btn btn-primary" do %>
+         <%= "注文一覧画面に戻る" %>
+        <% end %>
+      </div>
+   <div class="col-md-3">
+    <table class='table table-inverse'>
+      <tboody>
+        <h4>　</h4>
+        <p id="notice"></p>
+          <tr>
+            <td>送料</td>
+            <td><%= @order.shipping_fee.to_s(:delimited) %>円</td>
+            <td colspan="2"></td>
+          </tr>
+          <tr>
+            <td>商品合計金額</td>
+            <td><%= @sum.to_s(:delimited) %>円</td>
+            <td colspan="2"></td>
+          </tr>
+          <tr>
+            <td>請求金額</td>
+            <td><%= @order.total_payment.to_s(:delimited) %>円</td>
+            <td colspan="2"></td>
+          </tr>
+          <tr>
+            <td>受注ステータス</td>
+            <td></td>
+            <td colspan="2"></td>
+          </tr>
+          <tr>
+            <td>制作ステータス</td>
+            <td></td>
+            <td colspan="2"></td>
+          </tr>
+      </tbody>
+    </table>
+   </div>
+  </div>
+ </div>

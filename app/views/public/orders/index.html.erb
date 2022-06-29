@@ -3,8 +3,8 @@
 <table class='table table-hover table-inverse'>
     <thead>
       <tr>
-        <th>宛名</th>
-        <th>注文商品</th>
+        <th></th>
+        <th></th>
         <th></th>
         <th colspan="3"></th>
       </tr>
@@ -13,16 +13,28 @@
     <% @orders.each do |order| %>
       <tr>
         <td>
-          <%= order.name %>
+          <%= order.created_at.strftime('%Y/%m/%d') %><br>
+          受取人：<%= order.name %>
         </td>
         <td>
+          <% @sum = 0 %>
           <% order.order_lists.each do |order_list| %>
-           <%= order_list.item.name %>
-           <%= order_list.amount %> 個
+            <% if order_list.item.image.attached? %>
+             <%= image_tag order_list.item.image,size: "100x100" %>
+            <% else %>
+             <%= image_tag 'no_image', size: "100x100" %>
+            <% end %>
+           <%= order_list.item.name %><br>
+           <% @price = order_list.item.with_tax_price * order_list.amount %>
+           商品単価：<%= order_list.item.with_tax_price.to_s(:delimited) %>円　注文個数：<%= order_list.amount %> 個　小計：<%= @price.to_s(:delimited) %>円<br><br>
+           <% @sum += @price %>
           <% end %>
         </td>
         <td>
-          <%= link_to order_path(order.id) do %>
+          送料:<%= order.shipping_fee.to_s(:delimited) %>円<br>
+          商品合計金額：<%= @sum.to_s(:delimited) %>円<br>
+          請求金額：<%= order.total_payment.to_s(:delimited) %>円<br>
+          <%= link_to order_path(order.id), class:"btn btn-success" do %>
            <%= "注文詳細" %>
           <% end %>
         </td>
