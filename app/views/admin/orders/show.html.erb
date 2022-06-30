@@ -1,7 +1,7 @@
 <p id="notice"></p>
  <div class="container px-5 px-sm-0">
   <div class="row">
-   <div class='col-md-8'>
+   <div class='col-md-7'>
     <table class='table table-inverse'>
       <thead>
         <h4>注文情報詳細画面</h4>
@@ -56,7 +56,7 @@
          <%= "注文一覧画面に戻る" %>
         <% end %>
       </div>
-   <div class="col-md-3">
+   <div class="col-md-4">
     <table class='table table-inverse'>
       <tboody>
         <h4>　</h4>
@@ -78,7 +78,12 @@
           </tr>
           <tr>
             <td>受注ステータス</td>
-            <td></td>
+            <td>
+              <%= form_with model: @order, url: admin_order_path(@order.id), method: :patch do |f| %>
+               <%= f.select :status, [['入金待ち',0], ['入金確認',1], ['製作中',2], ['発送準備中',3], ['発送済',4]] %>
+               <%= f.submit "更新", class:"btn btn-sm btn-success" %>
+              <% end %>
+            </td>
             <td colspan="2"></td>
           </tr>
           <tr>

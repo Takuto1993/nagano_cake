@@ -11,6 +11,7 @@ class Public::OrdersController < ApplicationController
     @orders = current_customer.orders
     @order = Order.find(params[:id])
     @order_lists = @order.order_lists
+    @order_list = OrderList.find(params[:id])
   end
 
   def confirm
@@ -44,7 +45,7 @@ class Public::OrdersController < ApplicationController
         order_list.order_id = @order.id
         order_list.amount = cart_item.amount
         order_list.price = cart_item.item.price
-        order_list.making_status = 0
+        order_list.making_status = 1
         order_list.save
       end
       current_customer.cart_items.destroy_all

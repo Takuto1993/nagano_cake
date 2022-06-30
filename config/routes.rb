@@ -30,7 +30,8 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :edit, :create, :update, :destroy]
     resources :items, only: [:index, :new, :show, :edit, :create, :update, :destroy]
     resources :customers, only: [:index, :show, :edit, :update]
-    resources :orders, only: [:show]
+    resources :orders, only: [:show, :update]
+    resources :order_lists, only: [:update]
     get 'homes/top'
   end
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
