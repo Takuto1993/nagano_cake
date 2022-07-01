@@ -6,6 +6,19 @@
       <thead>
         <h4>注文情報詳細画面</h4>
         <p id="notice"></p>
+        <thead>
+        <tr>
+          <th>受取人</th>
+          <th>注文日時</th>
+          <th colspan="2"></th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @orders.name %></td>
+            <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+          </tr>
+        </tbody>
         <tr>
           <th>商品名</th>
           <th>単価（税込）</th>
@@ -88,7 +101,7 @@
           </tr>
           <tr>
             <td>制作ステータス</td>
-            <td></td>
+            <td><%= @order_list.making_status %></td>
             <td colspan="2"></td>
           </tr>
       </tbody>
