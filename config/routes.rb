@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root 'public/homes#top'
   get '/about' =>'public/homes#about'
   get '/admin' => 'admin/homes#top'
+  
+  get '/admin/order_lists/:id' => 'admin/order/#show'
 
   get '/customers/mypage' => 'public/customers#show'
   get '/customers/unsubscribe' => 'public/customers#unsubscribe', as: 'unsubscribe'

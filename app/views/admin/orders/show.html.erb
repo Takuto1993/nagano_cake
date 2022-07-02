@@ -93,7 +93,7 @@
             <td>受注ステータス</td>
             <td>
               <%= form_with model: @order, url: admin_order_path(@order.id), method: :patch do |f| %>
-               <%= f.select :status, [['入金待ち',0], ['入金確認',1], ['製作中',2], ['発送準備中',3], ['発送済',4]] %>
+               <%= f.select :status, Order.statuses.keys %>
                <%= f.submit "更新", class:"btn btn-sm btn-success" %>
               <% end %>
             </td>
@@ -101,7 +101,12 @@
           </tr>
           <tr>
             <td>制作ステータス</td>
-            <td><%= @order_list.making_status %></td>
+            <td>
+              <%= form_with model: @order_list, url: admin_order_list_path(@order_list.id), method: :patch do |f| %>
+               <%= f.select :making_status, OrderList.making_statuses.keys %>
+               <%= f.submit "更新", class:"btn btn-sm btn-success" %>
+              <% end %>
+            </td>
             <td colspan="2"></td>
           </tr>
       </tbody>
