@@ -1,3 +1,20 @@
-<h1>ながのCAKE</h1>
-<%= link_to "新規会員登録", '/customers/sign_up' %>
-<%= link_to "商品一覧画面", '/items' %>
+<p id="notice"></p>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
+     <h1>ながのCAKE</h1>
+     <div class="row">
+       <%= link_to "ログイン", new_customer_session_path , class:"btn btn-info btn-sm btn-block mb-3" %>
+     </div>
+     <div class="row">
+       <%= link_to "新規会員登録", new_customer_registration_path , class:"btn btn-success btn-sm btn-block mb-3" %>
+     </div>
+     <div class="row">
+       <%= link_to '/items' do %>
+        <h4>商品一覧</h4>
+        <%= image_tag 'P1010558', size: "460x340" %>
+       <% end %>
+     </div>
+    </div>
+  </div>
+</div>

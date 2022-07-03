@@ -35,6 +35,26 @@
                <li>
                  <%= link_to "ログアウト",destroy_customer_session_path, method: :delete %>
                </li>
+               <% elsif admin_signed_in? %>
+               <li>
+                 <%= link_to "注文一覧", '/admin' %>
+               </li>
+               <%= "　" %>
+               <li>
+                 <%= link_to "会員一覧", '/admin/customers' %>
+               </li>
+               <%= "　" %>
+               <li>
+                 <%= link_to "商品一覧", '/admin/items' %>
+               </li>
+               <%= "　" %>
+               <li>
+                 <%= link_to "ジャンル一覧", '/admin/genres' %>
+               </li>
+               <%= "　" %>
+               <li>
+                 <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+               </li>
                <% else %>
                 <li>
                  <%= link_to "新規会員登録", new_customer_registration_path %>
@@ -43,12 +63,29 @@
                 <li>
                   <%= link_to "ログイン", new_customer_session_path %>
                 </li>
+                <%= "　" %>
+                <li>
+                  <%= link_to "管理者モード", new_admin_session_path %>
+                </li>
               <% end %>
             </ul>
           </div>
         </div>
       </nav>
     </header>
+    <main class="mb-auto">
+    <% if notice %>
+     <p><%= notice %></p>
+    <% end %>
     <%= yield %>
+    <footer>
+     <div class="container mt-5">
+      <div class="row">
+       <div class="mx-auto">
+        <p>Nagano Cake</p>
+       </div>
+      </div>
+     </div>
+    </footer>
   </body>
 </html>
