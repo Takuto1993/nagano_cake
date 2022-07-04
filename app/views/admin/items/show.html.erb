@@ -1,14 +1,21 @@
-<div>
-  <% if @item.image.attached? %>
-   <%= image_tag @item.image,size: "200x200" %>
-  <% else %>
-   <%= image_tag 'no_image', size: "200x200" %>
-  <% end %>
-  <p>商品名:<%= @item.name %></p>
-  <p>商品説明:<%= @item.introduction %></p>
-  <p><%= @item.price.to_s(:delimited) %>円</p>
-  <%= link_to "編集", edit_admin_item_path(@item.id) %>
-  |
-  <%= link_to "削除", admin_item_path(@item.id), method: :delete, "data-confirm" => "本当に削除しますか？" %><br>
-  <%= link_to "商品一覧画面", '/admin/items' %>
+<p id="notice"></p>
+<div class="container">
+ <div class="row">
+  <div class ="mx-auto">
+   <div>
+     <% if @item.image.attached? %>
+      <%= image_tag @item.image,size: "200x200" %>
+     <% else %>
+      <%= image_tag 'no_image', size: "200x200" %>
+     <% end %>
+     <p>商品名:<%= @item.name %></p>
+     <p>商品説明:<%= @item.introduction %></p>
+     <p><%= @item.price.to_s(:delimited) %>円</p>
+     <%= link_to "編集", edit_admin_item_path(@item.id) %>
+     |
+     <%= link_to "削除", admin_item_path(@item.id), method: :delete, "data-confirm" => "本当に削除しますか？" %><br>
+     <%= link_to "商品一覧画面", '/admin/items' %>
+   </div>
+  </div>
+ </div>
 </div>

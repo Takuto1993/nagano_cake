@@ -1,29 +1,36 @@
-<h3>商品一覧画面</h3>
-<%= link_to "新規商品登録", 'items/new' %>
+<p id="notice"></p>
+<div class="container">
+ <div class="row">
+  <div class ="mx-auto">
+    <h3>商品一覧画面</h3>
+    <%= link_to "新規商品登録", 'items/new' %>
 
-  <table class='table table-hover table-inverse'>
-    <thead>
-      <tr>
-        <th>商品名</th>
-        <th>商品説明文</th>
-        <th>税抜価格</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td>
-          <% if item.image.attached? %>
-           <%= image_tag item.image,size: "200x200" %>
-          <% else %>
-           <%= image_tag 'no_image', size: "200x200" %>
-          <% end %>
-          <%= link_to item.name, admin_item_path(item.id) %>
-        </td>
-        <td><%= item.introduction %></td>
-        <td><%= item.price.to_s(:delimited) %>円</td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
+      <table class='table table-hover table-inverse'>
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>商品説明文</th>
+            <th>税抜価格</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @items.each do |item| %>
+          <tr>
+            <td>
+              <% if item.image.attached? %>
+               <%= image_tag item.image,size: "200x200" %>
+              <% else %>
+               <%= image_tag 'no_image', size: "200x200" %>
+              <% end %>
+              <%= link_to item.name, admin_item_path(item.id) %>
+            </td>
+            <td><%= item.introduction %></td>
+            <td><%= item.price.to_s(:delimited) %>円</td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+  </div>
+ </div>
+</div>

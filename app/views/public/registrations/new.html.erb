@@ -1,64 +1,73 @@
-<h2>会員登録</h2>
+<p id="notice"></p>
+<div class="container">
+ <div class="row">
+  <div class ="mx-auto">
+    <h2>会員登録</h2>
 
-<%= form_with model:@customer, url: customer_registration_path do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
+    <%= form_with model:@customer, url: customer_registration_path do |f| %>
+      <%= render "public/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :"性" %><br />
-    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+      <div class="field">
+        <%= f.label :"性" %><br />
+        <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :"名" %><br />
+        <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :"性カナ" %><br />
+        <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :"名カナ" %><br />
+        <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :"メールアドレス" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :"パスワード" %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %>文字以上)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :"パスワード（確認用）" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :"郵便番号" %><br />
+        <%= f.text_field :postal_code, autocomplete: "postal_code" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :"住所" %><br />
+        <%= f.text_field :main_address, autocomplete: "main_address" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :"電話番号" %><br />
+        <%= f.text_field :telephone_number, autocomplete: "telephone_number" %>
+      </div>
+      <br>
+      <div class="actions">
+        <%= f.submit "登録", class: "btn btn-success" %>
+      </div>
+    <% end %>
+    <br>
+    <%= link_to new_customer_session_path, class: "btn btn-primary" do %>
+     <%= "ログイン画面へ" %>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :"名" %><br />
-    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :"性カナ" %><br />
-    <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :"名カナ" %><br />
-    <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :"メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :"パスワード" %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %>文字以上)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :"パスワード（確認用）" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :"郵便番号" %><br />
-    <%= f.text_field :postal_code, autocomplete: "postal_code" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :"住所" %><br />
-    <%= f.text_field :main_address, autocomplete: "main_address" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :"電話番号" %><br />
-    <%= f.text_field :telephone_number, autocomplete: "telephone_number" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "登録" %>
-  </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+ </div>
+</div>
