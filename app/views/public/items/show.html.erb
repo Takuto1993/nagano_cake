@@ -19,11 +19,11 @@
         <%= f.hidden_field :item_id, :value => @item.id %>
         <%= f.select :amount, *[1..10] %>
         <div class="actions">
-          <%= f.submit "カートに入れる", class:"btn btn-sm btn-primary" %>
+          <%= f.submit "カートに入れる", class:"btn btn-sm btn-success" %>
         </div>
       <% end %>
       <br>
-      <%= link_to "商品一覧画面", '/items' %>
+      <%= link_to "商品一覧画面", '/items', class: "btn btn-primary" %>
     </div>
   </div>
  </div>

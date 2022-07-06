@@ -17,12 +17,14 @@
         <% @items.each do |item| %>
           <tr>
             <td>
-              <% if item.image.attached? %>
-               <%= image_tag item.image,size: "150x150" %>
-              <% else %>
-               <%= image_tag 'no_image', size: "150x150" %>
+              <%= link_to item_path(item.id) do %>
+                <% if item.image.attached? %>
+                 <%= image_tag item.image,size: "150x150" %>
+                <% else %>
+                 <%= image_tag 'no_image', size: "150x150" %>
+                <% end %>
+                <%= item.name %>
               <% end %>
-              <%= link_to item.name, item_path(item.id) %>
             </td>
             <td><%= item.introduction %></td>
             <td><%= item.price.to_s(:delimited) %>円</td>

@@ -19,6 +19,7 @@
           </a>
           <div class="navbar-collapse collapse show" id="navbarNavDropdown" style >
             <ul class="navbar-nav ml-auto" >
+              <%#customerログイン時 %>
               <% if customer_signed_in? %>
               <li>
                 <%= link_to "マイページ", '/customers/mypage' %>
@@ -35,6 +36,7 @@
                <li>
                  <%= link_to "ログアウト",destroy_customer_session_path, method: :delete %>
                </li>
+               <%# adminログイン時 %>
                <% elsif admin_signed_in? %>
                <li>
                  <%= link_to "注文一覧", '/admin' %>
@@ -55,6 +57,7 @@
                <li>
                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
                </li>
+               <%# customer,adminどちらもログインしていない時 %>
                <% else %>
                 <li>
                  <%= link_to "新規会員登録", new_customer_registration_path %>
