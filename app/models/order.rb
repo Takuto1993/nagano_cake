@@ -6,4 +6,9 @@ class Order < ApplicationRecord
   has_many :order_lists, dependent: :destroy
   belongs_to :customer
 
+  validates :name, :address, :telephone_number,
+            presence: true
+  validates :postal_code, length: {is: 7}, numericality: { only_integer: true }
+  validates :telephone_number, numericality: { only_integer: true }
+
 end
