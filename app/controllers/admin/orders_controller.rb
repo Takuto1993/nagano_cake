@@ -9,12 +9,9 @@ class Admin::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     @order_lists = @order.order_lists
-    if @order.update(order_params)
+    @order.update(order_params)
       @order_lists.update_all(making_status: "製作待ち") if @order.status == "入金確認"
-      redirect_to admin_order_path(@order.id)
-    else
-      render :show
-    end
+    redirect_to admin_order_path(@order.id)
   end
 
   private

@@ -36,7 +36,7 @@
     <%= form_with model: @genre, url: '/admin/genres' do |f| %>
     　<h5>ジャンル名</h5>
     　<%= f.text_field :name %>
-     <%= f.submit 'ジャンル名登録' %>
+     <%= f.submit 'ジャンル名登録', class: "btn btn-success" %>
     <% end %>
   </div>
  </div>

@@ -33,7 +33,7 @@
           <td><%= @price.to_s(:delimited) %>円</td>
           <% @sum += @price %>
           <td>
-            <%= form_with model: @order_list, url: admin_order_list_path(@order_list.id), method: :patch do |f| %>
+            <%= form_with model: order_list, url: admin_order_list_path(order_list.id), method: :patch do |f| %>
              <%= f.select :making_status, OrderList.making_statuses.keys %>
              <%= f.submit "更新", class:"btn btn-sm btn-success" %>
             <% end %>
@@ -74,7 +74,7 @@
    <div class="col-md-4">
     <table class='table table-inverse'>
       <tboody>
-        <h4></h4>
+        <h4>　</h4>
         <p id="notice"></p>
           <tr>
             <td>送料</td>

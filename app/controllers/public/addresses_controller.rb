@@ -11,6 +11,7 @@ class Public::AddressesController < ApplicationController
   end
 
   def create
+    @addresses = Address.where(customer_id: current_customer.id)
     @address = Address.new(address_params)
     @address.customer_id = current_customer.id
     if @address.save
